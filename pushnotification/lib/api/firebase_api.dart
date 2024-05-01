@@ -1,0 +1,21 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+Future<void> handleBackingMessage(RemoteMessage message) async {
+    print('Title: ${message.notification?.title}');
+    print('Body: ${message.notification?.body}');
+    print('Payload: ${message.data}');
+
+  }
+
+class FirebaseApi{
+  final _firebaseMessaging =  FirebaseMessaging.instance;
+
+
+  Future<void> initNotifications() async {
+
+    await _firebaseMessaging.requestPermission();
+    final fCMTOKEN = await _firebaseMessaging.getToken();
+
+    print('TOKEN: $fCMTOKEN, ');
+  }
+}
